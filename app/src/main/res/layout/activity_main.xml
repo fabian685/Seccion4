@@ -8,28 +8,30 @@
     tools:context="com.fable.seccion4.MainActivity">
 
     <TextView
-        android:id="@+id/textView4"
+        android:id="@+id/textView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="21dp"
-        android:text="TextView" />
+        android:text="Hola a todos!" />
 
     <Button
-        android:id="@+id/button3"
+        android:id="@+id/button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/textView4"
+        android:layout_below="@+id/textView"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="25dp"
-        android:text="Button" />
+        android:text="Mi Botón"
+        android:background="#ff80"
+        />
 
     <EditText
-        android:id="@+id/editText4"
+        android:id="@+id/editText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/button3"
+        android:layout_below="@+id/button"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="30dp"
         android:ems="10"
@@ -37,11 +39,11 @@
         android:text="Name" />
 
     <Switch
-        android:id="@+id/switch2"
+        android:id="@+id/switch1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/editText4"
-        android:layout_alignStart="@+id/editText4"
+        android:layout_alignLeft="@+id/editText"
+        android:layout_alignStart="@+id/editText"
         android:layout_centerVertical="true"
         android:text="Switch" />
 
@@ -49,9 +51,9 @@
         android:id="@+id/checkBox2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/switch2"
-        android:layout_alignStart="@+id/switch2"
-        android:layout_below="@+id/switch2"
+        android:layout_alignLeft="@+id/switch1"
+        android:layout_alignStart="@+id/switch1"
+        android:layout_below="@+id/switch1"
         android:layout_marginTop="47dp"
         android:text="CheckBox" />
 </RelativeLayout>

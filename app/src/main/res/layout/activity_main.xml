@@ -25,6 +25,7 @@
         android:layout_marginTop="25dp"
         android:text="Mi Botón"
         android:background="#ff80"
+        android:onClick="Llamada"
         />
 
     <EditText

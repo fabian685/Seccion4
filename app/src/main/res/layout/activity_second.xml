@@ -4,16 +4,15 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.fable.seccion4.MainActivity">
+    tools:context="com.fable.seccion4.SecondActivity">
 
-    <Button
-        android:id="@+id/BotonPrincipal"
-        android:layout_width="match_parent"
+
+    <TextView
+        android:id="@+id/CajaTextoPrincipal"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
+        android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginBottom="13dp"
-        android:background="#f80"
-        android:text="Siguiente"
-        android:textColor="#FFF" />
+        android:layout_marginTop="162dp"
+        android:text="" />
 </RelativeLayout>

@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+xmlns:app="http://schemas.android.com/apk/res-auto"
+xmlns:tools="http://schemas.android.com/tools"
+android:layout_width="match_parent"
+android:layout_height="match_parent"
+tools:context="com.fable.seccion4.ThirdActivity">
+
+
+    <EditText
+        android:id="@+id/CampoTelefono"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="42dp"
+        android:ems="10"
+        android:inputType="phone" />
+
+    <EditText
+        android:id="@+id/CampoTextoWeb"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/CampoTelefono"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="68dp"
+        android:ems="10"
+        android:inputType="text|textPersonName" />
+
+    <ImageButton
+        android:id="@+id/BtnTelefono"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/CampoTextoWeb"
+        android:layout_toEndOf="@+id/CampoTelefono"
+        android:layout_toRightOf="@+id/CampoTelefono"
+        android:background="@android:drawable/ic_menu_call" />
+
+    <ImageButton
+        android:id="@+id/BtnWeb"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/CampoTextoWeb"
+        android:layout_marginBottom="9dp"
+        android:layout_toEndOf="@+id/CampoTextoWeb"
+        android:layout_toRightOf="@+id/CampoTextoWeb"
+        android:background="@android:drawable/ic_menu_view" />
+
+    <ImageButton
+        android:id="@+id/BtnCamara"
+        android:layout_width="match_parent"
+        android:layout_height="44dp"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:src="@android:drawable/ic_menu_camera"
+        android:background="#F80" />
+</RelativeLayout>

@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.os.Build;
+import android.provider.Settings;
 import android.support.annotation.NonNull;
 import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AppCompatActivity;
@@ -32,6 +33,7 @@ public class ThirdActivity extends AppCompatActivity {
         BtnWeb = findViewById(R.id.BtnWeb);
         BtnCamara = findViewById(R.id.BtnCamara);
 
+        //Botón para la llamada
         BtnTelefono.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -39,7 +41,32 @@ public class ThirdActivity extends AppCompatActivity {
                 if (NumeroTelefono != null && !NumeroTelefono.isEmpty()) {
                     //Comprobar versión actual de android que estamos corriendo
                     if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-                        requestPermissions(new String[]{Manifest.permission.CALL_PHONE}, CodigoLlamadaTelefono);
+                        //Comprobar si ha aceptado, no ha aceptado o nunca se le ha preguntado
+                        if (ComprobarPermiso(Manifest.permission.CALL_PHONE)) {
+                            //Ha aceptado
+                            Intent i = new Intent(Intent.ACTION_CALL, Uri.parse("tel: " + NumeroTelefono));
+                            if (ActivityCompat.checkSelfPermission(ThirdActivity.this, Manifest.permission.CALL_PHONE) != PackageManager.PERMISSION_GRANTED) return;
+                            startActivity(i);
+                        }
+                        else{
+                            //No ha aceptado o es la primera vez que se le pregunta
+                            if(!shouldShowRequestPermissionRationale(Manifest.permission.CALL_PHONE)) {
+                                //No se le ha preguntado aún
+                                requestPermissions(new String[]{Manifest.permission.CALL_PHONE}, CodigoLlamadaTelefono);
+                            }
+                            else {
+                                //Ha denegado
+                                Toast.makeText(ThirdActivity.this, "Por favor habilite el acceso", Toast.LENGTH_LONG).show();
+                                Intent i = new Intent(Settings.ACTION_APPLICATION_DETAILS_SETTINGS);
+                                i.addCategory(Intent.CATEGORY_DEFAULT);
+                                i.setData(Uri.parse("package:" + getPackageName()));
+                                i.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                                i.addFlags(Intent.FLAG_ACTIVITY_NO_HISTORY);
+                                i.addFlags(Intent.FLAG_ACTIVITY_EXCLUDE_FROM_RECENTS);
+                                startActivity(i);
+                            }
+                        }
+                        //
                     } else {
                         VersionesViejas(NumeroTelefono);
                     }
@@ -56,6 +83,45 @@ public class ThirdActivity extends AppCompatActivity {
                     startActivity(IntentLlamada);
                 } else {
                     Toast.makeText(ThirdActivity.this, "Usted denegó el acceso", Toast.LENGTH_LONG).show();
+                }
+            }
+        });
+
+        //Botón para la dirección web
+        BtnWeb.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                String Direccion = CampoTextoWeb.getText().toString();
+                String CorreoE = "fabian.leguizamo@gmail.com";
+                if (Direccion != null && !Direccion.isEmpty()) {
+                    //Intent IntentW = new Intent(Intent.ACTION_VIEW, Uri.parse("http://" + Direccion));
+                    Intent IntentW = new Intent();
+                    IntentW.setAction(Intent.ACTION_VIEW);
+                    IntentW.setData(Uri.parse("http://" + Direccion));
+
+                    //Contactos
+                    Intent IntentContactos = new Intent(Intent.ACTION_VIEW, Uri.parse("content://contacts/people"));
+
+                    //Email rápido
+                    Intent IntentEmailR = new Intent(Intent.ACTION_SENDTO, Uri.parse("mailto: " + CorreoE));
+
+                    //Email Completo
+                    Intent IntentEmailC = new Intent(Intent.ACTION_VIEW, Uri.parse(CorreoE));
+                    IntentEmailC.setType("plain/text");
+                    IntentEmailC.putExtra(Intent.EXTRA_SUBJECT, "Título del Correo");
+                    IntentEmailC.putExtra(Intent.EXTRA_TEXT, "Hola, me encanta mi aplicación.");
+                    IntentEmailC.putExtra(Intent.EXTRA_EMAIL, new String[]{"fernando@gmail.com", "antonio@gmail.com"});
+                    //startActivity(IntentW);
+                    //startActivity(IntentContactos);
+
+                    //Teléfono 2, sin permisos requeridos
+
+                    Intent IntentTelDos = new Intent(Intent.ACTION_DIAL, Uri.parse("tel:666111222"));
+
+                    startActivity(IntentTelDos);
+                }
+                else {
+                    Toast.makeText(ThirdActivity.this, "Debe escribir algo", Toast.LENGTH_LONG).show();
                 }
             }
         });

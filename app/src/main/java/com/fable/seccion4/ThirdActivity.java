@@ -1,6 +1,7 @@
 package com.fable.seccion4;
 
 import android.Manifest;
+import android.app.Activity;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.net.Uri;
@@ -21,6 +22,7 @@ public class ThirdActivity extends AppCompatActivity {
     private ImageButton BtnTelefono, BtnWeb, BtnCamara;
 
     private final int CodigoLlamadaTelefono = 100;
+    private final int CodigoFotoCamara = 50;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -125,6 +127,33 @@ public class ThirdActivity extends AppCompatActivity {
                 }
             }
         });
+
+        //Botón para la cámara
+        BtnCamara.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent IntentCamara = new Intent("android.media.action.IMAGE_CAPTURE");
+                //startActivity(IntentCamara);
+                startActivityForResult(IntentCamara, CodigoFotoCamara);
+            }
+        });
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        switch (requestCode) {
+            case CodigoFotoCamara:
+                if (resultCode == Activity.RESULT_OK) {
+                    String resultado = data.toUri(0);
+                    Toast.makeText(this, "Resultado: " + resultado, Toast.LENGTH_LONG).show();
+                }
+                else {
+                    Toast.makeText(this, "Ocurrió un problema con la foto.", Toast.LENGTH_LONG).show();
+                }
+                break;
+            default:
+                super.onActivityResult(requestCode, resultCode, data);
+        }
     }
 
     @Override

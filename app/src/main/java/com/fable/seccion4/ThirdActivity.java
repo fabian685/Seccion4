@@ -106,19 +106,19 @@ public class ThirdActivity extends AppCompatActivity {
                     Intent IntentEmailR = new Intent(Intent.ACTION_SENDTO, Uri.parse("mailto: " + CorreoE));
 
                     //Email Completo
-                    Intent IntentEmailC = new Intent(Intent.ACTION_VIEW, Uri.parse(CorreoE));
+                    Intent IntentEmailC = new Intent(Intent.ACTION_SEND, Uri.parse(CorreoE));
+                    //IntentEmailC.setClassName("com.google.android.gm", "com.google.android.gm.ComposeActivityGmail");
                     IntentEmailC.setType("plain/text");
                     IntentEmailC.putExtra(Intent.EXTRA_SUBJECT, "Título del Correo");
                     IntentEmailC.putExtra(Intent.EXTRA_TEXT, "Hola, me encanta mi aplicación.");
                     IntentEmailC.putExtra(Intent.EXTRA_EMAIL, new String[]{"fernando@gmail.com", "antonio@gmail.com"});
-                    //startActivity(IntentW);
-                    //startActivity(IntentContactos);
+                    //Preguntar siempre
+                    //startActivity(Intent.createChooser(IntentEmailC,"Escoja cliente de correo"));
 
                     //Teléfono 2, sin permisos requeridos
-
                     Intent IntentTelDos = new Intent(Intent.ACTION_DIAL, Uri.parse("tel:666111222"));
 
-                    startActivity(IntentTelDos);
+                    startActivity(IntentEmailC);
                 }
                 else {
                     Toast.makeText(ThirdActivity.this, "Debe escribir algo", Toast.LENGTH_LONG).show();

@@ -29,6 +29,9 @@ public class ThirdActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_third);
 
+        //Activar flecha ir atrás
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
         CampoTelefono = findViewById(R.id.CampoTelefono);
         CampoTextoWeb = findViewById(R.id.CampoTextoWeb);
         BtnTelefono = findViewById(R.id.BtnTelefono);
@@ -110,7 +113,7 @@ public class ThirdActivity extends AppCompatActivity {
                     //Email Completo
                     Intent IntentEmailC = new Intent(Intent.ACTION_SEND, Uri.parse(CorreoE));
                     //IntentEmailC.setClassName("com.google.android.gm", "com.google.android.gm.ComposeActivityGmail");
-                    IntentEmailC.setType("plain/text");
+                    IntentEmailC.setType("text/plain");
                     IntentEmailC.putExtra(Intent.EXTRA_SUBJECT, "Título del Correo");
                     IntentEmailC.putExtra(Intent.EXTRA_TEXT, "Hola, me encanta mi aplicación.");
                     IntentEmailC.putExtra(Intent.EXTRA_EMAIL, new String[]{"fernando@gmail.com", "antonio@gmail.com"});
